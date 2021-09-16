@@ -16,30 +16,30 @@
     ></v-text-field>
 
     <v-row>
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="2">
         <v-select
           dense
-          single-line
           hide-details
           v-model="sort"
           :items="sortItems"
+          :label="$t('sort')"
           outlined
           rounded
         ></v-select>
       </v-col>
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="2">
         <v-select
           dense
-          single-line
           hide-details
           v-model="radical"
           :items="radicalItems"
+          :label="$t('refine')"
           outlined
           rounded
         ></v-select>
       </v-col>
 
-      <v-col cols="12" md="9" class="text-right">
+      <v-col cols="12" md="8" class="text-right">
         <v-btn
           v-for="(option, key) in layouts"
           :key="key"
