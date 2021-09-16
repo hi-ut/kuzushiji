@@ -21,7 +21,8 @@
       </v-navigation-drawer>
 
       <v-app-bar dark>
-        <v-app-bar-nav-icon v-if="isMobile" @click.stop="drawer = !drawer" />
+        <!-- ハンバーガーメニューはとりあえず使わない -->
+        <v-app-bar-nav-icon v-if="isMobile && false" @click.stop="drawer = !drawer" />
         <v-toolbar-title>
           <nuxt-link
             :to="
