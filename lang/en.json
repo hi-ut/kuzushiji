@@ -417,5 +417,6 @@
   "件": "items",
   "位": "",
   "ドキュメント": "Document",
-  "データセット": "Dataset"
+  "データセット": "Dataset",
+  "sort": "Sort"
 }
