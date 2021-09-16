@@ -113,13 +113,24 @@ export default class ShareButtons extends Vue {
   sort: string = 'size'
 
   get items2() {
-    const search = this.search
-    const items = this.items
+    let items = this.items
 
-    const key = this.sort
-    const key2 = this.radical
+    //絞り込み
+    const radicalTerm = this.radical
+    if (radicalTerm != '全て') {
+      let filterdByRadical = []
+      for (const item of items) {
+        if (radicalTerm === item.radical) {
+          filterdByRadical.push(item)
+        }
+      }
+      //絞り込んだ結果で、既存のitemsを置換
+      items = filterdByRadical
+    }
 
-    if (key === 'size') {
+    //並び替え
+    const sortValue = this.sort
+    if (sortValue === 'size') {
       items.sort(function (a: any, b: any) {
         if (a.size < b.size) return 1
         if (a.size > b.size) return -1
@@ -133,26 +144,17 @@ export default class ShareButtons extends Vue {
       })
     }
 
-    if (key2 != '全て') {
-      this.search='' //クリア検索欄
-      let filterdByRadical = []
-      for (const item of items) {
-        if (key2 === item.radical) {
-          filterdByRadical.push(item)
-        }
-      }
-      return filterdByRadical
-    }
-
-    if (!search) {
+    //検索文字列が未指定の場合は、そのまま返却
+    const queryTerm = this.search
+    if (!queryTerm) {
       return items
     }
 
+    //検索文字列を含むもの
     const items2 = []
     for (const item of items) {
-      if (search === item.label) {
+      if (item.label.includes(queryTerm)) {
         items2.push(item)
-        break
       }
     }
 
